@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other == attackTarget)
+        if (other.gameObject == attackTarget)
         {
             Destroy(gameObject);
         }
