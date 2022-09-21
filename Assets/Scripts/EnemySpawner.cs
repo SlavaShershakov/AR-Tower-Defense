@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float delayTime;
     [SerializeField] private float repeatTime;
     [SerializeField] private float radius;
-
+    public static EnemySpawner Instance { get; private set; }
     private Vector3 SpawnPosition
     {
         get 
@@ -17,6 +17,10 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        Instance = this;
+    }
     public void StartSpawn()
     {
         StartCoroutine(SpawningRoutine());
