@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     {
         gameOverPanel = GameObject.Find("GameOverPanel");
         gameOverPanel.SetActive(false);
+        
+        ScoreManager.Start();
     }
     public void StartGame()
     {
