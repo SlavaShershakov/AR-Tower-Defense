@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -8,6 +9,8 @@ public class Enemy : MonoBehaviour
     private Health enemyHealth;
     private int scorePoints;
 
+    private Animator enemyAnimator;
+
     private void Start()
     {
         attackTarget = GameObject.Find("Tower");
@@ -15,6 +18,8 @@ public class Enemy : MonoBehaviour
 
         enemyHealth = GetComponent<Health>();
         scorePoints = enemyHealth.MaxHealth;
+
+        enemyAnimator = GetComponent<Animator>();
     }
     private void FixedUpdate()
     {
@@ -24,8 +29,20 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject == attackTarget)
         {
-            attackTarget.GetComponent<Health>().RecieveDamage(damage);
-            Destroy(gameObject);
+            StartCoroutine(AttackingRoutine());
+
+            IEnumerator AttackingRoutine()
+            {
+                speed = 0.0f;
+
+                enemyAnimator.SetTrigger("Attack");
+                float damageDealingTime = enemyAnimator.GetCurrentAnimatorStateInfo(0).length;
+                yield return new WaitForSeconds(damageDealingTime / 2);
+                attackTarget.GetComponent<Health>().RecieveDamage(damage);
+                yield return new WaitForSeconds(damageDealingTime / 2);
+
+                Destroy(gameObject);
+            }
         }
     }
     private void OnDestroy()
