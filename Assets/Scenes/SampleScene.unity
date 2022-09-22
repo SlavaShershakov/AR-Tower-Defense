@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &17279573 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4924785411101189, guid: d1b1882db25d6fc4f8ff52b752db2e26,
+    type: 3}
+  m_PrefabInstance: {fileID: 1618659688}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &166831310
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,6 +1210,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+--- !u!114 &1383954894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383954887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592f0acd110506f4ea16018f210215b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionParticle: {fileID: 9148739369122635704, guid: 11a69e209a31fe34b9699cdbb66c44be,
+    type: 3}
+  explosionPlace: {fileID: 17279573}
+  playOnStart: 0
+  playOnDestroy: 1
 --- !u!1 &1406708575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1292,6 +1315,18 @@ PrefabInstance:
     - target: {fileID: 1658703651737341, guid: d1b1882db25d6fc4f8ff52b752db2e26, type: 3}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459614740650351, guid: d1b1882db25d6fc4f8ff52b752db2e26, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459614740650351, guid: d1b1882db25d6fc4f8ff52b752db2e26, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459614740650351, guid: d1b1882db25d6fc4f8ff52b752db2e26, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -45
       objectReference: {fileID: 0}
     - target: {fileID: 4536198121414486, guid: d1b1882db25d6fc4f8ff52b752db2e26, type: 3}
       propertyPath: m_RootOrder
@@ -1401,7 +1436,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1643563893}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -15, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 300, y: 30, z: 300}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1420,7 +1455,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!23 &1643563896
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1470,7 +1505,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1643563893}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1735243697
 GameObject:
   m_ObjectHideFlags: 0

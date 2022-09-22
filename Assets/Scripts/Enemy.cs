@@ -6,20 +6,24 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private int damage;
     private GameObject attackTarget;
+    private Health attackTargetHealth;
     private Health enemyHealth;
     private int scorePoints;
 
     private Animator enemyAnimator;
+    private AudioSource enemyAudio;
 
     private void Start()
     {
         attackTarget = GameObject.Find("Tower");
         transform.LookAt(attackTarget.transform);
 
+        attackTargetHealth = attackTarget.GetComponent<Health>();
         enemyHealth = GetComponent<Health>();
         scorePoints = enemyHealth.MaxHealth;
 
         enemyAnimator = GetComponent<Animator>();
+        enemyAudio = GetComponent<AudioSource>();
     }
     private void FixedUpdate()
     {
@@ -38,7 +42,8 @@ public class Enemy : MonoBehaviour
                 enemyAnimator.SetTrigger("Attack");
                 float damageDealingTime = enemyAnimator.GetCurrentAnimatorStateInfo(0).length;
                 yield return new WaitForSeconds(damageDealingTime / 2);
-                attackTarget.GetComponent<Health>().RecieveDamage(damage);
+                enemyAudio.Play();
+                attackTargetHealth.RecieveDamage(damage);
                 yield return new WaitForSeconds(damageDealingTime / 2);
 
                 Destroy(gameObject);
@@ -48,8 +53,6 @@ public class Enemy : MonoBehaviour
     private void OnDestroy()
     {
         if (!enemyHealth.isAlive)
-        {
             ScoreManager.AddPoints(scorePoints);
-        }
     }
 }

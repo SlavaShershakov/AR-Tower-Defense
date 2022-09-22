@@ -19,7 +19,7 @@ public class ShootingController : MonoBehaviour
         launchPointTransform = GameObject.Find("LaunchPoint").transform;
         barrelTrnasform = GameObject.Find("TurretBarrel").transform;
         aimTransform = GameObject.Find("Aim").transform;
-        
+
         StartCoroutine(ShootingRoutine());
     }
     private IEnumerator ShootingRoutine()
