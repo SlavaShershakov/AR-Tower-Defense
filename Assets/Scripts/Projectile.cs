@@ -33,4 +33,11 @@ public class Projectile : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
+    }
+#endif
 }

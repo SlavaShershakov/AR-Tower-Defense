@@ -131,8 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39538d4358d39fa458ae7622d85fe14b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionDamage: 5
-  explosionRadius: 10
+  explosionDamage: 10
+  explosionRadius: 7
 --- !u!114 &1678616240220276410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +148,6 @@ MonoBehaviour:
   explosionParticle: {fileID: 7535607469619513247, guid: ac10190cf200c4f7e881ca8e41d3d760,
     type: 3}
   explosionPlace: {fileID: 3161914838414399542}
-  explosionSound: {fileID: 8300000, guid: af2b012ecebc34a91b65a0351bd46cc7, type: 3}
   playOnStart: 1
   playOnDestroy: 0
 --- !u!114 &515790908407107979
@@ -166,7 +165,6 @@ MonoBehaviour:
   explosionParticle: {fileID: 9148739369122635704, guid: 58f298fcf79ec7145a96602a0482bb01,
     type: 3}
   explosionPlace: {fileID: 3161914838414399542}
-  explosionSound: {fileID: 0}
   playOnStart: 0
   playOnDestroy: 1
 --- !u!82 &3194273473923069426
