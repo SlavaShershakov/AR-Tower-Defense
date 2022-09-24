@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 912411782779867026}
   - component: {fileID: 1383954893}
   - component: {fileID: 1383954889}
-  - component: {fileID: 4921590434495067159}
   - component: {fileID: 1383954894}
   m_Layer: 2
   m_Name: Tower
@@ -128,19 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446d203b47cc9f04ea9b85875a4cd3fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4921590434495067159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1582112111176492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ce2416a423b0bd4ca24394c8922253d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
 --- !u!114 &1383954894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,8 +142,8 @@ MonoBehaviour:
   explosionParticle: {fileID: 9148739369122635704, guid: 11a69e209a31fe34b9699cdbb66c44be,
     type: 3}
   explosionPlace: {fileID: 4924785411101189}
-  playOnStart: 0
-  playOnDestroy: 1
+  playOnEnable: 0
+  playOnDisable: 0
 --- !u!1 &6529302235167877600
 GameObject:
   m_ObjectHideFlags: 0

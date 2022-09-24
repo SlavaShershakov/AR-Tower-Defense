@@ -4,17 +4,17 @@ public class ExplosionEffect : MonoBehaviour
 {
     [SerializeField] private ParticleSystem explosionParticle;
     [SerializeField] private Transform explosionPlace;
-    [SerializeField] private bool playOnStart;
-    [SerializeField] private bool playOnDestroy;
+    [SerializeField] private bool playOnEnable;
+    [SerializeField] private bool playOnDisable;
 
-    private void Start()
+    private void OnEnable()
     {
-        if (playOnStart)
+        if (playOnEnable)
             Play();
     }
-    private void OnDestroy()
+    private void OnDisable()
     {
-        if (playOnDestroy)
+        if (playOnDisable)
             Play();
     }
     public void Play()

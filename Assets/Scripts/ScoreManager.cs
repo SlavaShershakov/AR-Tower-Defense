@@ -41,7 +41,6 @@ public static class ScoreManager
         highScoreText = GameObject.Find("HighScoreText (TMP)").GetComponent<TextMeshProUGUI>();
         LoadHighScore();
         Score = 0;
-        Debug.Log(Application.persistentDataPath);
     }
     public static void AddPoints(int points)
     {

@@ -1199,6 +1199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1406708576}
   - component: {fileID: 1406708577}
+  - component: {fileID: 1406708578}
   m_Layer: 2
   m_Name: SpawnManager
   m_TagString: Untagged
@@ -1233,12 +1234,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d335b9eada4c394ea568e2ff6b5ded6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 1111084942782338, guid: 84493eaa65d75074ca2c6e2d8a90ff9a, type: 3}
-  - {fileID: 1975194375736644, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
   delayTime: 1
-  repeatTime: 1.5
-  radius: 25
+  repeatTime: 1
+  radius: 20
+--- !u!114 &1406708578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406708575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c987afaa917065040843da1c49dc4f31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPools:
+  - pooledObject: {fileID: 3163908055852852386, guid: 0007d43b470a3764cbf1f68a4472bee6,
+      type: 3}
+    defaultCapacity: 3
+  - pooledObject: {fileID: 6207250696944808057, guid: 84493eaa65d75074ca2c6e2d8a90ff9a,
+      type: 3}
+    defaultCapacity: 2
+  - pooledObject: {fileID: 3823249329772650051, guid: 128a80094e00bf34fa2555766a7eea0e,
+      type: 3}
+    defaultCapacity: 2
 --- !u!1001 &1618659688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1246,6 +1266,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1351770074}
     m_Modifications:
+    - target: {fileID: 1383954894, guid: d1b1882db25d6fc4f8ff52b752db2e26, type: 3}
+      propertyPath: playOnDisable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1582112111176492, guid: d1b1882db25d6fc4f8ff52b752db2e26, type: 3}
       propertyPath: m_Name
       value: Tower
