@@ -1,12 +1,14 @@
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private float delayTime;
     [SerializeField] private float repeatTime;
     [SerializeField] private float radius;
+    private List<ObjectPool<GameObject>> enemyPrefabsPools = new List<ObjectPool<GameObject>>();
     public static EnemySpawner Instance { get; private set; }
     private Vector3 SpawnPosition
     {
@@ -21,6 +23,10 @@ public class EnemySpawner : MonoBehaviour
     {
         Instance = this;
     }
+    private void Start()
+    {
+        enemyPrefabsPools = ObjectPooler.Instance.FindPools<Enemy>();
+    }
     public void StartSpawn()
     {
         StartCoroutine(SpawningRoutine());
@@ -31,7 +37,9 @@ public class EnemySpawner : MonoBehaviour
 
         while (true)
         {
-            Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], SpawnPosition, Quaternion.identity, transform);
+            var curretnEnemy = enemyPrefabsPools[Random.Range(0, enemyPrefabsPools.Count)].Get();
+            curretnEnemy.transform.position = SpawnPosition;
+            curretnEnemy.SetActive(true);
             yield return new WaitForSeconds(repeatTime);
         }
     }

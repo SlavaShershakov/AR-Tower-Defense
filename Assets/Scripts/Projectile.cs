@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Projectile : MonoBehaviour
 {
@@ -6,9 +7,12 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float explosionRadius;
     private Rigidbody projectileRigidbody;
 
+    private ObjectPool<GameObject> projectilePool;
+
     private void Start()
     {
         projectileRigidbody = GetComponent<Rigidbody>();
+        projectilePool = ObjectPooler.Instance.FindPool<Projectile>();
     }
     private void Update()
     {
@@ -31,9 +35,12 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
-
+    private void OnDisable()
+    {
+        projectilePool.Release(gameObject);
+    }
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {

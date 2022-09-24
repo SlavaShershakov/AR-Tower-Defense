@@ -3,13 +3,9 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
+    public Slider slider;
     private Camera mainCamera;
-    [HideInInspector] public Slider slider;
 
-    private void Awake()
-    {
-        slider = GetComponentInChildren<Slider>();
-    }
     private void Start()
     {
         GetComponent<Canvas>().worldCamera = mainCamera = Camera.main;

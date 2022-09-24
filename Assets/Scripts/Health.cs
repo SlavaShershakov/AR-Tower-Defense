@@ -10,12 +10,17 @@ public class Health : MonoBehaviour
         get => maxHealth;
         private set => maxHealth = value;
     }
-    public bool isAlive { get; private set; } = true;
+    public bool isAlive { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         healthBar = GetComponentInChildren<HealthBar>();
         healthBar.slider.value = healthBar.slider.maxValue = maxHealth = health;
+    }
+    private void OnEnable()
+    {
+        isAlive = true;
+        healthBar.slider.value = health = maxHealth;
     }
     public void RecieveDamage(int damage)
     {
@@ -24,7 +29,7 @@ public class Health : MonoBehaviour
         if (health <= 0)
         {
             isAlive = false;
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         healthBar.slider.value = health;

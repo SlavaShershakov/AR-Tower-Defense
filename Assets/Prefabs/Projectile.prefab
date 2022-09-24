@@ -23,7 +23,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3161914838414399542
 Transform:
   m_ObjectHideFlags: 0
@@ -148,8 +148,8 @@ MonoBehaviour:
   explosionParticle: {fileID: 7535607469619513247, guid: ac10190cf200c4f7e881ca8e41d3d760,
     type: 3}
   explosionPlace: {fileID: 3161914838414399542}
-  playOnStart: 1
-  playOnDestroy: 0
+  playOnEnable: 1
+  playOnDisable: 0
 --- !u!114 &515790908407107979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,8 +165,8 @@ MonoBehaviour:
   explosionParticle: {fileID: 9148739369122635704, guid: 58f298fcf79ec7145a96602a0482bb01,
     type: 3}
   explosionPlace: {fileID: 3161914838414399542}
-  playOnStart: 0
-  playOnDestroy: 1
+  playOnEnable: 0
+  playOnDisable: 1
 --- !u!82 &3194273473923069426
 AudioSource:
   m_ObjectHideFlags: 0

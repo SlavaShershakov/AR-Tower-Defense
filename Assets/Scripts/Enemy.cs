@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,14 +9,21 @@ public class Enemy : MonoBehaviour
     private GameObject attackTarget;
     private Health attackTargetHealth;
     private Health enemyHealth;
+    private float maxSpeed;
     private int scorePoints;
 
     private Animator enemyAnimator;
     private AudioSource enemyAudio;
 
+    private ObjectPool<GameObject> enemyPool;
+
+    private void Awake()
+    {
+        maxSpeed = speed;
+    }
     private void Start()
     {
-        attackTarget = GameObject.Find("Tower");
+        attackTarget = Tower.Instace.gameObject;
         transform.LookAt(attackTarget.transform);
 
         attackTargetHealth = attackTarget.GetComponent<Health>();
@@ -24,6 +32,15 @@ public class Enemy : MonoBehaviour
 
         enemyAnimator = GetComponent<Animator>();
         enemyAudio = GetComponent<AudioSource>();
+
+        enemyPool = ObjectPooler.Instance.FindPool(gameObject.name);
+    }
+    private void OnEnable()
+    {
+        if (attackTarget != null)
+            transform.LookAt(attackTarget.transform);
+        
+        speed = maxSpeed;
     }
     private void FixedUpdate()
     {
@@ -46,12 +63,14 @@ public class Enemy : MonoBehaviour
                 attackTargetHealth.RecieveDamage(damage);
                 yield return new WaitForSeconds(damageDealingTime / 2);
 
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }
-    private void OnDestroy()
+    private void OnDisable()
     {
+        enemyPool.Release(gameObject);
+
         if (!enemyHealth.isAlive)
             ScoreManager.AddPoints(scorePoints);
     }

@@ -28,8 +28,9 @@ public class GameManager : MonoBehaviour
     }
     public void EndGame()
     {
+        isGameActive = false;
         gameOverPanel.SetActive(true);
-        Destroy(EnemySpawner.Instance.gameObject);
+        EnemySpawner.Instance.gameObject.SetActive(false);
     }
     public void RestartGame()
     {

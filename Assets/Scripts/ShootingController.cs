@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class ShootingController : MonoBehaviour
 {
@@ -14,11 +15,15 @@ public class ShootingController : MonoBehaviour
 
     private readonly float g = Physics.gravity.y;
 
+    private ObjectPool<GameObject> projectilePool;
+
     private void Start()
     {
         launchPointTransform = GameObject.Find("LaunchPoint").transform;
         barrelTrnasform = GameObject.Find("TurretBarrel").transform;
         aimTransform = GameObject.Find("Aim").transform;
+
+        projectilePool = ObjectPooler.Instance.FindPool<Projectile>();
 
         StartCoroutine(ShootingRoutine());
     }
@@ -28,8 +33,9 @@ public class ShootingController : MonoBehaviour
         {
             yield return new WaitUntil(() => Input.GetMouseButton(0));
 
-            var newProjectile = Instantiate(projectilePrefab, launchPointTransform.position, transform.rotation, transform);
-            newProjectile.transform.SetParent(null);
+            var newProjectile = projectilePool.Get();
+            newProjectile.transform.position = launchPointTransform.position;
+            newProjectile.SetActive(true);
             Shot(newProjectile);
 
             yield return new WaitForSeconds(reloadTime);
