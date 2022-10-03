@@ -17,6 +17,8 @@ public class ShootingController : MonoBehaviour
 
     private ObjectPool<GameObject> projectilePool;
 
+    private Camera mainCamera;
+
     private void Start()
     {
         launchPointTransform = GameObject.Find("LaunchPoint").transform;
@@ -25,23 +27,38 @@ public class ShootingController : MonoBehaviour
 
         projectilePool = ObjectPooler.Instance.FindPool<Projectile>();
 
+        mainCamera = Camera.main;
+
         StartCoroutine(ShootingRoutine());
     }
     private IEnumerator ShootingRoutine()
     {
+        RaycastHit hit = new RaycastHit();
+
         while (true)
         {
-            yield return new WaitUntil(() => Input.GetMouseButton(0));
+            yield return new WaitUntil(() => Input.touchCount > 0 && Physics.Raycast(mainCamera.ScreenPointToRay(Input.GetTouch(0).position), out hit));
 
-            var newProjectile = projectilePool.Get();
-            newProjectile.transform.position = launchPointTransform.position;
-            newProjectile.SetActive(true);
-            Shot(newProjectile);
+            aimTransform.position = hit.point;
+            RotateTurret();
+            Shoot(LoadNewProjetile());
 
             yield return new WaitForSeconds(reloadTime);
         }
+
+        void RotateTurret()
+        {
+            transform.rotation = Quaternion.LookRotation(aimTransform.position, Vector3.up);
+        }
     }
-    private void Shot(GameObject projectile)
+    private GameObject LoadNewProjetile()
+    {
+        var newProjectile = projectilePool.Get();
+        newProjectile.transform.position = launchPointTransform.position;
+        newProjectile.SetActive(true);
+        return newProjectile;
+    }
+    private void Shoot(GameObject projectile)
     {
         barrelTrnasform.localEulerAngles = new Vector3(-barrelAngle, 0.0f, 0.0f);
 
